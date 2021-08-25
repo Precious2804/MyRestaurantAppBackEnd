@@ -1,6 +1,8 @@
 <?php
 
 namespace app\Traits;
+
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
@@ -20,5 +22,15 @@ trait Generics
     {
         $id = $this->generateId();
         return DB::table($table)->where($column, $id)->first() ? $this->createUniqueID($table, $column) :  $id;
+    }
+    function createNewToken($token){
+        return response()->json([
+            'status' => true,
+            'message' => "Login Was Successful",
+            'data' => auth()->user(),
+            'access_token' => 'Bearer '.$token,
+            'token_type' => 'bearer',
+            'expires_in' => Auth::factory()->getTTL() * 60000
+        ]);
     }
 }
