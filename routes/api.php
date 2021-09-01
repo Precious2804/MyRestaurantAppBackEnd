@@ -20,4 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('menu', [MainController::class, 'createMenu']);
+Route::get('all_menu', [MainController::class, 'allMenu']);
 Route::post('best_services', [MainController::class, 'createBestServices']);

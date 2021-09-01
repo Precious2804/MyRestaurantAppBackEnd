@@ -118,4 +118,16 @@ class MainController extends Controller
             ], 201);
         }
     }
+
+    public function allMenu(){
+        $result = Menu::all();
+
+        if($result) {
+            return response([
+                'status'=>true,
+                'message'=>"All Menu Items",
+                'data'=>$result
+            ]);
+        }
+    }
 }
